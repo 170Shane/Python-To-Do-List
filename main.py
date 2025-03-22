@@ -19,7 +19,7 @@ while True:
         
         
     # This can also be implemented using a match statement in Python 3.10+:
-    user_action = input("Type 'add', 'show', 'edit' or 'exit': ") # Get user input
+    user_action = input("Type 'add', 'show', 'edit', 'complete' or 'exit': ") # Get user input
     user_action = user_action.strip().lower() # Remove leading and trailing whitespaces and convert to lowercase
     
     match user_action:
@@ -57,6 +57,28 @@ while True:
                     print("Updated To-Do list: ", my_todo_list) # Print the updated list
                     break        
                 
+        case "complete":            
+            if len(my_todo_list) == 0: # Check if the list is empty
+                print("The To-Do list is empty.") # Print an error message
+                continue  
+            print("To-Do list:") # Print the list
+            for todo in my_todo_list: # Loop through the list
+                print(f"{my_todo_list.index(todo)+1}. {todo}") # Print the index and the item    
+            while True: # Loop until the user provides a valid input
+                complete_todo_item = input("Type the number of the item you want to mark as completed: ") # Get the index of the item to edit 
+                if complete_todo_item.isdigit() == False: # Check if the input is a number
+                    print("Invalid input. Please type a number.") # Print an error message     
+                    continue           
+                elif int(complete_todo_item) > len(my_todo_list): # Check if the input is within the range of the list
+                    print("Invalid input. Please type a number within the range of the list.") # Print an error message
+                    continue                        
+                else:                    
+                    int(complete_todo_item) # Convert the index to an integer
+                    my_todo_list.pop(int(complete_todo_item)-1) # Remove the item from the list
+                    print("Updated To-Do list: ", my_todo_list) # Print the updated list
+                    break 
+
+
         case _: # If the user types anything else
-            print("Invalid action. Please type 'add' or 'show' or 'exit'") # Print an error message
+            print("Invalid action. Please type 'add', 'show', 'edit', 'complete' or 'exit'") # Print an error message
         
