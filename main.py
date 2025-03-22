@@ -24,14 +24,22 @@ while True:
     
     match user_action:
         
-        case "add":
-            user_input = input("Type an item to add to the To-Do list: ")
-            my_todo_list.append(user_input)
+        case "exit": 
+            print("Exiting...Bye!") # If the user types "exit"
+            break # Exit the loop
         
-        case "show":
-            print(" ".join(my_todo_list))
+        case "add":
+            user_input = input("Type an item to add to the To-Do list: ") # Get user input
+            my_todo_list.append(user_input) # Add the user input to the list
+        
+        case "show": 
+            print(" ".join(my_todo_list)) # If the user types "show", print the list
             
         case "edit":            
+            if len(my_todo_list) == 0: # Check if the list is empty
+                print("The To-Do list is empty.") # Print an error message
+                continue
+            print("To-Do list:") # Print the list
             for todo in my_todo_list: # Loop through the list
                 print(f"{my_todo_list.index(todo)+1}. {todo}") # Print the index and the item
             while True: # Loop until the user provides a valid input
@@ -47,12 +55,8 @@ while True:
                     updated_to_do_value = input("Type the updated value: ") # Get the updated value
                     my_todo_list[edit_todo_item-1] = updated_to_do_value # Update the value
                     print("Updated To-Do list: ", my_todo_list) # Print the updated list
-                    break
-        
-        case "exit": 
-            print("Exiting...Bye!") # If the user types "exit"
-            break # Exit the loop
-        
+                    break        
+                
         case _: # If the user types anything else
             print("Invalid action. Please type 'add' or 'show' or 'exit'") # Print an error message
         
