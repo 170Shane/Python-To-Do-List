@@ -29,8 +29,16 @@ while True:
             break # Exit the loop
         
         case "add":
+            file = open("todos.txt", "r") # Open the file in read mode
+            my_todo_list = file.readlines() # Read the lines from the file and assign them to the list
+            file.close() # Close the file     
+                                
             user_input = input("Type an item to add to the To-Do list: ") # Get user input
-            my_todo_list.append(user_input) # Add the user input to the list
+            
+            my_todo_list.append(user_input) # Add the user input to the list            
+            file = open("todos.txt", "a") # Open the file in append mode
+            file.write(user_input + "\n") # Write the user input to the file and add a newline character
+            file.close() # Close the file            
         
         case "show": 
             print(" ".join(my_todo_list)) # If the user types "show", print the list
