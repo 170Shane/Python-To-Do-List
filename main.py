@@ -15,6 +15,11 @@ def show_todos(filepath="files/todos.txt"):
         
     return my_todo_list
 
+def write_todos(filepath="files/todos.txt", my_todo_list=[]):
+    with open(filepath, "w") as file:        # Open the file in write mode    
+        file.writelines(my_todo_list) # Write the lines to the file and assign them to the list
+    
+
 
 while True:    # Infinite loop to keep the program running until the user types "exit"        
     
@@ -61,19 +66,18 @@ while True:    # Infinite loop to keep the program running until the user types 
                 updated_to_do_value = input("Type the updated value: ") # Get the updated value
                 my_todo_list[edit_todo_item-1] = updated_to_do_value + "\n" # Update the value in the list                  
                 
-                with open("files/todos.txt", "w") as file:# Open the file in write mode
-                    file.writelines(my_todo_list) # Write the updated list to the file
+                write_todos(my_todo_list=my_todo_list)
                 
                 show_todos() # Show the updated list
                 break        
                 
-    elif user_action.startswith("complete"): # If the user types "complete"      
+    elif user_action.startswith("complete"): # If the user types "complete"           
+        my_todo_list = show_todos() # Show the To-Do list   
         if len(my_todo_list) == 0: # Check if the list is empty
             print("The To-Do list is empty.") # Print an error message
             continue  
         print("To-Do list:") # Print the list
-        for todo in my_todo_list: # Loop through the list
-            print(f"{my_todo_list.index(todo)+1}. {todo}") # Print the index and the item    
+        show_todos() # Show the To-Do list
         while True: # Loop until the user provides a valid input
             complete_todo_item = input("Type the number of the item you want to mark as completed: ") # Get the index of the item to edit 
             if complete_todo_item.isdigit() == False: # Check if the input is a number
@@ -84,8 +88,11 @@ while True:    # Infinite loop to keep the program running until the user types 
                 continue                        
             else:                    
                 int(complete_todo_item) # Convert the index to an integer
-                my_todo_list.pop(int(complete_todo_item)-1) # Remove the item from the list
-                print("Updated To-Do list: ", my_todo_list) # Print the updated list
+                my_todo_list.pop(int(complete_todo_item)-1) # Remove the item from the list                
+                write_todos(my_todo_list=my_todo_list) # Write the updated list to the file
+                print(f"Item {complete_todo_item} marked as completed.") # Print a message
+                print("Updated To-Do list:")
+                show_todos() # Show the updated list
                 break 
             
     else: # If the user types anything else
