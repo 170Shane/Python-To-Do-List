@@ -1,7 +1,7 @@
-def show_todos():
+def show_todos(filepath="files/todos.txt"):
     #my_todo_list = [] # Create an empty list to store the To-Do items
     
-    with open("files/todos.txt", "r") as file:        # Open the file in read mode    
+    with open(filepath, "r") as file:        # Open the file in read mode    
         my_todo_list = file.readlines() # Read the lines from the file and assign them to the list
 
         print("\n------------------------------------------------") # Print the list
