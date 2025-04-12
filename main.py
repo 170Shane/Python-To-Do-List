@@ -1,6 +1,13 @@
 def show_todos(filepath="files/todos.txt"):
     #my_todo_list = [] # Create an empty list to store the To-Do items
-    
+    """_summary_
+
+    Args:
+        filepath (str, optional): _description_. Defaults to "files/todos.txt".
+
+    Returns:
+        _type_: _description_
+    """    
     with open(filepath, "r") as file:        # Open the file in read mode    
         my_todo_list = file.readlines() # Read the lines from the file and assign them to the list
 
@@ -82,8 +89,8 @@ while True:    # Infinite loop to keep the program running until the user types 
             complete_todo_item = input("Type the number of the item you want to mark as completed: ") # Get the index of the item to edit 
             if complete_todo_item.isdigit() == False: # Check if the input is a number
                 print("Invalid input. Please type a number.") # Print an error message     
-                continue           
-            elif int(complete_todo_item) > len(my_todo_list): # Check if the input is within the range of the list
+                continue                       
+            elif int(complete_todo_item) > len(my_todo_list) or int(complete_todo_item) == 0: # Check if the input is within the range of the list
                 print("Invalid input. Please type a number within the range of the list.") # Print an error message
                 continue                        
             else:                    
