@@ -1,31 +1,5 @@
-def show_todos(filepath="files/todos.txt"):
-    #my_todo_list = [] # Create an empty list to store the To-Do items
-    """_summary_
 
-    Args:
-        filepath (str, optional): _description_. Defaults to "files/todos.txt".
-
-    Returns:
-        _type_: _description_
-    """    
-    with open(filepath, "r") as file:        # Open the file in read mode    
-        my_todo_list = file.readlines() # Read the lines from the file and assign them to the list
-
-        print("\n------------------------------------------------") # Print the list
-        print("Here is the current To-Do list:") # Print the list
-        print("------------------------------------------------") # Print the list    
-        
-        for index, fileline in enumerate(my_todo_list): # Loop through the lines in the file
-            print(f"{index+1}. {fileline.strip()}") # Print each line without the newline character    
-            
-        print("------------------------------------------------") # Print the list            
-        
-    return my_todo_list
-
-def write_todos(filepath="files/todos.txt", my_todo_list=[]):
-    with open(filepath, "w") as file:        # Open the file in write mode    
-        file.writelines(my_todo_list) # Write the lines to the file and assign them to the list
-    
+import functions
 
 
 while True:    # Infinite loop to keep the program running until the user types "exit"        
@@ -39,7 +13,7 @@ while True:    # Infinite loop to keep the program running until the user types 
         
     elif user_action.startswith("add"): 
             
-        my_todo_list = show_todos()            
+        my_todo_list = functions.show_todos()            
                             
         user_input = input("Type an item to add to the To-Do list: ") # Get user input
         
@@ -48,11 +22,11 @@ while True:    # Infinite loop to keep the program running until the user types 
             file.write(user_input + "\n") # Write the user input to the file and add a newline character        
 
     elif user_action.startswith("show"): # If the user types "show"                        
-        show_todos()
+        functions.show_todos()
             
     elif user_action.startswith("edit"): # If the user types "edit"      
         
-        my_todo_list = show_todos() # Show the To-Do list
+        my_todo_list = functions.show_todos() # Show the To-Do list
         
         if len(my_todo_list) == 0: # Check if the list is empty
             print("The To-Do list is empty.") # Print an error message
@@ -73,18 +47,18 @@ while True:    # Infinite loop to keep the program running until the user types 
                 updated_to_do_value = input("Type the updated value: ") # Get the updated value
                 my_todo_list[edit_todo_item-1] = updated_to_do_value + "\n" # Update the value in the list                  
                 
-                write_todos(my_todo_list=my_todo_list)
+                functions.write_todos(my_todo_list=my_todo_list)
                 
-                show_todos() # Show the updated list
+                functions.show_todos() # Show the updated list
                 break        
                 
     elif user_action.startswith("complete"): # If the user types "complete"           
-        my_todo_list = show_todos() # Show the To-Do list   
+        my_todo_list = functions.show_todos() # Show the To-Do list   
         if len(my_todo_list) == 0: # Check if the list is empty
             print("The To-Do list is empty.") # Print an error message
             continue  
         print("To-Do list:") # Print the list
-        show_todos() # Show the To-Do list
+        functions.show_todos() # Show the To-Do list
         while True: # Loop until the user provides a valid input
             complete_todo_item = input("Type the number of the item you want to mark as completed: ") # Get the index of the item to edit 
             if complete_todo_item.isdigit() == False: # Check if the input is a number
@@ -96,10 +70,10 @@ while True:    # Infinite loop to keep the program running until the user types 
             else:                    
                 int(complete_todo_item) # Convert the index to an integer
                 my_todo_list.pop(int(complete_todo_item)-1) # Remove the item from the list                
-                write_todos(my_todo_list=my_todo_list) # Write the updated list to the file
+                functions.write_todos(my_todo_list=my_todo_list) # Write the updated list to the file
                 print(f"Item {complete_todo_item} marked as completed.") # Print a message
                 print("Updated To-Do list:")
-                show_todos() # Show the updated list
+                functions.show_todos() # Show the updated list
                 break 
             
     else: # If the user types anything else
