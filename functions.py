@@ -26,5 +26,11 @@ def show_todos(filepath=FILEPATH):
     return my_todo_list
 
 def write_todos(filepath=FILEPATH, my_todo_list=[]):
+    """Write the To-Do list to the file.
+
+    Args:
+        filepath (str, optional): The path to the file. Defaults to "files/todos.txt".
+        my_todo_list (list, optional): The To-Do list. Defaults to an empty list.
+    """
     with open(filepath, "w") as file:        # Open the file in write mode    
         file.writelines(my_todo_list) # Write the lines to the file and assign them to the list
