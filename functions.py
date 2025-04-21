@@ -34,3 +34,10 @@ def write_todos(filepath=FILEPATH, my_todo_list=[]):
     """
     with open(filepath, "w") as file:        # Open the file in write mode    
         file.writelines(my_todo_list) # Write the lines to the file and assign them to the list
+        
+
+if __name__ == "__main__":
+    print("This file is not meant to be run directly.")
+    print("The `if __name__ == '__main__':` block is a special construct in Python that allows the file to be imported as a module without running the code inside this block.")
+    print("The `exit()` function is called to terminate the program immediately, so no code below this line is executed.")
+    print("Please run the main.py file instead.")
