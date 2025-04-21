@@ -1,5 +1,16 @@
 
 import functions
+import time
+
+# This program is a simple To-Do list application that allows users to add, show, edit, and complete tasks. 
+# It uses a text file to store the tasks and provides a command-line interface for user interaction.
+# The program is designed to be user-friendly and provides feedback for invalid inputs.    
+# The program runs in an infinite loop until the user types "exit".
+# The program uses a separate module, functions.py, to handle file operations and display the To-Do list.   
+
+now = time.strftime("%Y-%m-%d %H:%M:%S") # Get the current date and time
+print("Current date and time:", now) # Print the current date and time
+print("Welcome to the To-Do list application!") # Print a welcome message
 
 
 while True:    # Infinite loop to keep the program running until the user types "exit"        
